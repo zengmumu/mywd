@@ -1,0 +1,38 @@
+<ion-view view-title="产品" ng-controller="produceCtrl">
+	
+	<ion-tabs class="tabs-top tabs-produce  tabs-color-active-positive">
+		<ion-tab title="定期" on-select="changeType(0)"></ion-tab>
+		<ion-tab title="私募" on-select="changeType(1)"
+		
+			></ion-tab>
+		<ion-tab title="保险"  on-select="changeType(2)"></ion-tab>
+		<ion-tab title="房地产"  on-select="changeType(3)"></ion-tab>
+	</ion-tabs>
+	<ion-content class="has-header">
+	<!--list 产品列表-->
+			<div class="list wd-prolist mt-10" ng-repeat="item in produceList track by $index">
+				<div class="item item-header wd-text-positive" wd-render>
+					{{item.title}}
+				</div>
+				<div class="item row ">
+					<div class="col-30">
+						<h3 class="wd-text-danger">{{item.yearBefit|number:2}}</h3>
+						<p class="wd-text-muted">预期年化收益(%)</p>
+					</div>
+					<div class="col-20">
+						<h4 class="wd-text-muted">{{item.minInvest}}</h4>
+						<p class="wd-text-muted">起投金额(元)</p>
+					</div>
+					<div class="col-20 text-center">
+						<h4 class="wd-text-muted">{{item.investDay}}</h4>
+						<p class="wd-text-muted">期限(天)</p>
+					</div>
+					<div class="col-30 col-center">
+						<p class="wd-text-muted lefted">剩余</p>
+						<div data-precent="{{item.invertLeftPre}}" class="circle"></div>
+					</div>
+				</div>
+				
+			</div>
+		</ion-content>
+</ion-view>

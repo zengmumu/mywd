@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.precent{ border: 1px solid gold;}
+		</style>
+	</head>
+	<body>
+		<div class="precent">
+			<canvas id="can" width="80" height="80">
+				
+			</canvas>
+		</div>
+		<script>
+			var can=document.getElementById("can");
+			// 得到二位画布
+			var ctx=can.getContext("2d");
+			// 准备开始画画
+			ctx.beginPath();
+			// 画笔是5
+			ctx.lineWidth=3;
+			// 设置画笔的颜色
+			ctx.strokeStyle="#eee";
+			// 开始画圆环
+			       //x，y，半径，从多少度，到多少度（弧度角）360=2Pi
+			ctx.arc(40,40,35,0,Math.PI*2);
+			// 结束划线
+			ctx.stroke();
+			// 准备开始画画
+			ctx.beginPath();
+			// 画笔是5
+			ctx.lineWidth=3;
+			// 设置画笔的颜色
+			ctx.strokeStyle="orangered";
+			// 开始画圆环
+			       //x，y，半径，从多少度，到多少度（弧度角）360=2Pi
+			ctx.arc(40,40,35,0,Math.PI*2/100*80);
+			// 结束划线
+			ctx.stroke();
+		</script>
+	</body>
+</html>

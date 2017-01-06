@@ -1,0 +1,55 @@
+<div class="loginpage" ng-controller="loginCtrl">
+
+		<header class="bar bar-header bar-wd">
+			<a href="" class="button button-icon icon wd-icon wd-icon-arrow-back" ng-click="goBack()"></a>
+			<h2 class="title">登陆</h2>
+			<a href="" class="button button-right button-clear button-wd-default">注册</a>
+		</header>
+		<ion-content class="has-header">
+			
+			<div class="list mt-10">
+				<div class="item item-input">
+					<i class="icon placeholder-icon wd-icon  wd-icon-moible"></i>
+					<input type="text"  placeholder="请输入用户名" 
+						ng-model="user.name" 
+						class="has-delete"
+						ng-focus="user.showNameDel=true"
+						ng-blur="user.showNameDel=false"
+						 />
+					<i class="icon wd-icon-delete"
+						 ng-class="{'show':user.name.length&&user.showNameDel}"
+						 ng-click="user.name=''"
+						 >&times;</i>
+				</div>
+				<div class="item item-input">
+					<i class="icon placeholder-icon wd-icon wd-icon-key"></i>
+					<input type="password"  placeholder="请输入秘密" 
+						ng-model="user.password"
+						name="uname"
+						class="has-delete"
+						ng-focus="user.showPassDel=true"
+						ng-blur="user.showPassDel=false"
+						  />
+					<i class="icon wd-icon-delete"
+						 ng-class="{'show':user.password.length&&user.showPassDel}"
+						 ng-click="user.password=''"
+						 
+						 >&times;</i>
+				</div>
+				<div class="padding mt-20">
+					<button 
+						class="button  button-block button-disabled "
+						ng-click="checkLogin()"
+						ng-disabled="!user.name.length&&!user.password.length"
+						ng-class="{'button-wd-positive':user.name.length&&user.password.length}"
+						>登陆</button>
+						<p class="text-right">
+							<a href="" class="wd-positive">忘记密码</a>
+						</p>
+						<p ng-if="user.tip" class="wd-text-danger">{{user.tip}}</p>
+				</div>
+			</div>
+			
+		</ion-content>
+	
+</div>
