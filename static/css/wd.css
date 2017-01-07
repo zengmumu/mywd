@@ -5,6 +5,7 @@ a{ text-decoration: none; color: #3e6ba7;}
 .button-icon{ color: #666;}
 .button-wd-default{ color: #666 !important; font-size: 14px !important;}
 .item{ border-color: #e9e9e9;}
+.wd-bg-assertive{ background-color: #ff6331 !important; color: #fff;}
 .wd-positive{
 	color: #3e6ba7 !important;
 }
@@ -150,3 +151,9 @@ color:#999 !important;
 }
 /*produce*/
 .tabs-produce .tab-nav{ top:0 !important;}
+/*detail*/
+.top-box{
+	background: url(../images/detail-topbox.png) no-repeat center center;
+	background-size:cover ;
+	color:#ccc;
+}

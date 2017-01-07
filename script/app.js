@@ -55,7 +55,7 @@ var app=angular.module("wdApp",["ionic"])
 		})
 	}
 }])
-.controller("homeCtrl",["$scope","$http","wdService",function($scope,$http,wdService){
+.controller("homeCtrl",["$scope","$http","wdService","$state",function($scope,$http,wdService,$state){
 	// 默认从本地抓取数据
 	$scope.produceList=wdService.fechData("produceList");
 	// 默认用户名为空
@@ -107,6 +107,10 @@ var app=angular.module("wdApp",["ionic"])
 	$scope.loadMore=function(){
 		LoadProduceList(2)
 	}
+	// 切换路由
+	$scope.switchRouter=function(name,item){
+		$state.go(name,{id:item.id});
+	}
 }])
 .config(["$stateProvider","$urlRouterProvider","$ionicConfigProvider",function($stateProvider,$urlRouterProvider,$ionicConfigProvider){
 		 $ionicConfigProvider.platform.android.tabs.style('standard');  
@@ -122,6 +126,12 @@ var app=angular.module("wdApp",["ionic"])
 		url:"/login",
 		// 状态所对应的模板
 		templateUrl:"templates/pages/login.html"
+	})
+	.state("detail",{
+		// 状态对应的地址
+		url:"/detail/{id:[0-9]{1,10}}",
+		// 状态所对应的模板
+		templateUrl:"templates/pages/detail.html"
 	})
 	.state("tabs",{
 		// 状态对应的地址
@@ -201,4 +211,17 @@ var app=angular.module("wdApp",["ionic"])
 		$scope.produceType=type;
 		$scope.loadProduce();
 	}
+}])
+.controller("detailCtrl",["$scope","$http","$stateParams",function($scope,$http,$stateParams){
+		// 通过id 发起http请求 拿到数据
+		$scope.produce={};
+		$http.get("http://www.wd.com/detail?id="+$stateParams.id)
+		.success(function(res){
+			if(res.status){
+				$scope.produce=res.data;
+			}else{
+				alert("数据加载失败");
+				$scope.goBack();
+			}
+		})
 }])

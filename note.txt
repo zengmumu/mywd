@@ -1,4 +1,91 @@
+﻿
+CMD 命令
+1， 切换盘符   c：+回车（enter）  d：+回车
+2， 切换目录   cd 路径 回车
+3， 转向上一级 cd ../
+4,  转向根目录 cd /
+5， 查看当前目录下得文件夹或者文件    dir
+6， 清屏  cls
+7， 重复上一次命令   光标上箭头
+8， 查看 ip  ipconfig
+9， 查看网络服务器通信   ping   www.baidu.com
+10  如果路径太长 可以先复制路径 再在命令窗口 右键 完成粘贴
+
+---------------------------------------------git 命令
+git init  初始化 项目
+git add  note.txt   把 note 文件添加到git 项目仓库中 （我的git 只认note.txt 文件）
+
+git commit -m "一次伟大的提交"
+向git 仓库中提交  文件 明确注释为 "一次伟大的提交"
+
+git status 项目现在的状态
+git diff   查看文件发送的状态
+
+-----------------------------------------
+在没有 commit 怎么 回退
+git checkout note.txt  
+
+
+git log 显示提交的次数
+
+git help 显示帮助列表
+git log --pretty=oneline
+用一行的方式显示提交信息
+
+---------------------------------------------
+已经提交了，怎么样回到上一次 提交的状态
+git reset --hard HEAD^^
+(HEAD^)现在
+ HEAD~100 后退100步
+git reset --hard a27e （回退到指定的版本）
+
+git reflog 所有的提交信息
+
+
+
+ repository 项目仓库  
+
+ start Project 开始项目（右边灰色的按钮）
+
+ create repository 创建 项目仓库
+
+------------------------------------------配置钥匙
+settings 设置
+Deploy keys 设置钥匙
+c:/Users/mumu/.ssh/
+
+-------------------本地推送到服务器
+git remote add origin git@github.com:zengmumu/mywd.git
+    远程   添加 源文件  
+git push -u origin master
+把本地的文件推送到远程  master（主分支
+
+git add . 添加所有文件
+git commit -m "提交"
+git push origin master
+
+
+-----------------------------项目主页（可以真实的展示 200M 免费空间 可以做个人网站）
+
+1，添加一个 gh-pages 分支
+2，setting  找到地址 
+问题 加载太慢  文件要压缩 多一个src 不爽
+
+3，git checkout -b gh-pages  在本地创建一个gh-pages分支
+4，git branch 查看分支
+5，git pull origin gh-pages  把远程分支 内容 拉到本地 并且和本地分支合并
+
+
+-----------------------------本地分支和远程分支不一样 怎样同步
+1， 先添加 git add .
+2,  提交   git commit -m "解释"
+3， 推送到远程  git push origin  gh-pages
+
+----------------------------切换到主分支 明天做项目
+
 note is my love
 我爱git  git 非常的好，比女朋友都好。
 说了我还是很有爱的
 军不见了。
+我爱note
+

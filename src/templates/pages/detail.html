@@ -1,0 +1,78 @@
+<div class="detail" ng-controller="detailCtrl">
+	<header class="bar bar-header bar-wd">
+			<a href="" class="button button-icon icon wd-icon wd-icon-arrow-back" ng-click="goBack()"></a>
+			<h2 class="title">{{produce.title}}</h2>
+			
+	</header>
+	<ion-content class="has-header has-footer">
+		<div class="top-box">
+			<div class="row">
+				<div class="col text-left">{{produce.yearBefit}}%</div>
+				<div class="col text-right">{{produce.investDay}}天</div>
+			</div>
+			<div class="row">
+				<div class="col text-left">预期年化收益</div>
+				<div class="col text-right">期限</div>
+			</div>
+			<div class="row">
+				<div class="col text-left">剩余额度</div>
+				<div class="col text-right">{{produce.investLeft}}元</div>
+			</div>
+			<div class="row">
+				<div class="col text-left">剩余时间</div>
+				<div class="col text-right">{{produce.investLeft}}</div>
+			</div>
+		</div>
+		<div class="date-box">
+			<div class="row">
+				<div class="col">{{produce.investDate.start}}
+</div>
+				<div class="col">{{produce.investDate.over}}</div>
+				<div class="col">{{produce.investDate.calBefit}}</div>
+				<div class="col">{{produce.investDate.end}}</div>
+			</div>
+			<div class="row">
+					<div class="col">起售</div>
+					<div class="col">销售截止</div>
+					<div class="col">计息日期</div>
+					<div class="col">预计到期</div>
+			</div>
+		</div>
+		<div class="list proInfo mt-10">
+			<div class="item item-header">产品信息</div>
+			<div class="item-body">
+				
+				<div class="row">
+					<div class="col text-left">产品总额</div>					
+					<div class="col text-right">{{produce.investAll}}</div>
+				</div>
+				<div class="row">
+					<div class="col text-left">回款方式</div>					
+					<div class="col text-right">{{produce.receivableWay}}</div>
+				</div>
+				<div class="row">
+					<div class="col text-left">预计回款日</div>					
+					<div class="col text-right">{{produce.investDate.end}}</div>
+				</div>
+				<div class="row">
+					<div class="col text-left">认购金额</div>					
+					<div class="col text-right">{{produce.minInvest}}</div>
+				</div>
+				<div class="row">
+					<div class="col text-left">产品安全等级</div>					
+					<div class="col text-right">{{produce.level}}</div>
+				</div>
+				<p class="text-right">*仅稳健型以上用户购买</p>
+			</div>
+		</div>
+		<div class="list mt-10">
+			<a href="{{produce.proDetailLink}}" class="item item-icon-right">产品募集书 <i class="icon ion-ios-arrow-right "></i> </a>
+			<a href="{{produce.proGuideBookLink}}" class="item item-icon-right">风险声明书 <i class="icon ion-ios-arrow-right "></i> </a>
+		</div>
+		
+	</ion-content>
+	<div class="bar bar-footer">
+			<div class="col col-70">总计(元)：{{produce.minInvest}}</div>
+			<div class="col col-30 wd-bg-assertive">立即购买</div>
+	</div>
+</div>
