@@ -11,7 +11,7 @@ CMD 命令
 9， 查看网络服务器通信   ping   www.baidu.com
 10  如果路径太长 可以先复制路径 再在命令窗口 右键 完成粘贴
 
----------------------------------------------git 命令
+---------------------------------------git 命令
 git init  初始化 项目
 git add  note.txt   把 note 文件添加到git 项目仓库中 （我的git 只认note.txt 文件）
 
@@ -80,7 +80,7 @@ git push origin master
 1， 先添加 git add .
 2,  提交   git commit -m "解释"
 3， 推送到远程  git push origin  gh-pages
-
+我是捣蛋公司创始人
 ----------------------------切换到主分支 明天做项目
 
 note is my love
@@ -89,5 +89,7 @@ note is my love
 军不见了。
 我爱note
 
+
 --------------------------我是新的命令
+大爱无疆
 
