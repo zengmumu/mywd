@@ -123,6 +123,12 @@ var app=angular.module("wdApp",["ionic"])
 		// 状态所对应的模板
 		templateUrl:"templates/pages/login.html"
 	})
+	.state("detail",{
+		// 状态对应的地址
+		url:"/detail/{id:[0-9]{1,10}}",
+		// 状态所对应的模板
+		templateUrl:"templates/pages/detail.html"
+	})
 	.state("tabs",{
 		// 状态对应的地址
 		url:"/tabs",
