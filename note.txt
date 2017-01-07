@@ -1,5 +1,4 @@
-﻿
-CMD 命令
+﻿CMD 命令
 1， 切换盘符   c：+回车（enter）  d：+回车
 2， 切换目录   cd 路径 回车
 3， 转向上一级 cd ../
@@ -82,10 +81,119 @@ git push origin master
 3， 推送到远程  git push origin  gh-pages
 
 ----------------------------切换到主分支 明天做项目
+git checkout 分支名称
 
-note is my love
-我爱git  git 非常的好，比女朋友都好。
-说了我还是很有爱的
-军不见了。
-我爱note
+
+----------------------------合并分支
+git merge master            把master 合并到 当前分支
+
+----------------------------本地文件和服务器文件不一致时候是提交不上去
+办法：
+1，先pull 下来
+2，看冲突  
+	>>>>>> HEAD 本地当前
+	=============
+	服务器上的
+	5dlakjsdfasdf545 commit
+3, 删除冲突
+
+4，先添加  在提交  push
+
+注意：本地修改前先push
+	
+
+
+
+$scope.$watch("name",function(o,n){},true)
+$scope.$emit("name",{})
+$scope.$on("name",function(event,data){})
+
+
+
+	1,配置产品详情的路由
+	2，当单击产品列表 切换路由并传递 产品的id值给详情页面
+	3，当到达产品详情页面，获取 传递过来的值 通过ajax 来获详情的数据
+
+	----------------------如果通过js代码切换路由
+	$state.go("路由名称"，传递数据)
+
+	----------------------详情页面接收数据
+
+	$stateParams.名称
+
+-------------------------------------------------------购买
+1，单击购买按钮时候
+1，有没有登陆
+	2.1如果没有登陆 跳转到登陆页面
+	2.2 如果登陆 检查该用户的风险评估值
+		2.2.1如果没有风险评估开始进行风险评估
+		2.2.2如果风险 开始购买
+
+-------------------------------------------------------
+配置一个路由tabs
+配置一个子路由 tabs.home
+配置一个带参数的路由
+
+----------------------------------
+配置
+state("name",{
+	url:"detail/{id:\d{1,10}}"，
+	templateUrl:"url地址"
+})
+
+切换
+$state.go("name",{id:Id})
+
+获取
+$stateParams.id
+
+
+---------------------------------历史记录
+$ionicHistory  所有的历史相关
+$ionicHistory.goBack()返回上一个状态
+$ionicHistory.forwardView() 历史记录中可以前进的状态
+$ionicHistory.backView() 历史记录中一个可以返回的状态
+$ionicHistory.backView().stateId  状态的id
+$ionicHistory.goToHistoryRoot("ion1") 根据历史记录id来跳转  ion1 默认的根状态
+
+
+-----------------------------------模态框
+1，创建模态框
+$ionicModal.formTemplateUrl(url,{scope:$scope})
+.then(function(res){$scope.modalRisk=res})
+
+2， 模板准备
+<ion-modal-view>
+	内容
+</ion-modal-view>
+3， 显示模块
+$scope.modalRisk.show();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

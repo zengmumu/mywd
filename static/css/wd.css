@@ -157,3 +157,41 @@ color:#999 !important;
 	background-size:cover ;
 	color:#ccc;
 }
+
+.active .modal-backdrop-bg {
+    opacity: 0.5;
+}
+.modal-backdrop-bg {
+    -webkit-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out;
+    background-color: #000;
+    opacity: 0;
+}
+.modal.modalRisk{
+    /*top: 20%;
+    right: 20%;
+    bottom: 20%;
+    left: 20%;
+    min-height: 240px;
+    width: 60%;*/
+    background:rgba(255,255,255,0.50);
+	width:270px;
+	height:171px;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	min-height: 170px;
+	border-radius: 8px;
+	overflow: hidden;
+}
+.modal.modalRisk .item-body{
+	height: 125px;
+	text-align: center;
+}
+.modal.modalRisk .item-header{
+
+font-size:17px;
+color:#0076ff;
+
+text-align:center;
+}
