@@ -1,3 +1,4 @@
+﻿
 CMD 命令
 1， 切换盘符   c：+回车（enter）  d：+回车
 2， 切换目录   cd 路径 回车
@@ -81,3 +82,10 @@ git push origin master
 3， 推送到远程  git push origin  gh-pages
 
 ----------------------------切换到主分支 明天做项目
+
+note is my love
+我爱git  git 非常的好，比女朋友都好。
+说了我还是很有爱的
+军不见了。
+我爱note
+

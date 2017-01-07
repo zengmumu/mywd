@@ -3,7 +3,7 @@
 	 * @require  Mock.js
 	 * @require  mock.angular.js
 	 * */
-	Mock.mock("http://www.wd.com/detail",{
+	Mock.mock(/http:\/\/www\.wd\.com\/detail\?id=[0-9]{1,10}/,{
 		"status":function(){var  num=Math.random();
 			if(num>.8){
 				return 0

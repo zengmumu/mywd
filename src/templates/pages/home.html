@@ -28,7 +28,10 @@
 			</ion-slide>
 		</ion-slide-box>
 		<!--list 产品列表-->
-		<div class="list wd-prolist mt-10" ng-repeat="item in produceList track by $index">
+		<div class="list wd-prolist mt-10" 
+			ng-repeat="item in produceList track by $index"
+			ng-click="switchRouter('detail',item)"
+			>
 			<div class="item item-header wd-text-positive" wd-render>
 				{{item.title}}
 			</div>
