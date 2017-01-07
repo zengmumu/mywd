@@ -72,7 +72,8 @@ var app=angular.module("wdApp",["ionic"])
 		})
 	}
 }])
-.controller("homeCtrl",["$scope","$http","wdService","$state",function($scope,$http,wdService,$state){
+.controller("homeCtrl",["$scope","$http","wdService","$state","$ionicHistory",function($scope,$http,wdService,$state,$ionicHistory){
+	console.log($ionicHistory.currentView());
 	// 默认从本地抓取数据
 	$scope.produceList=wdService.fechData("produceList");
 	// 默认用户名为空
@@ -154,6 +155,12 @@ var app=angular.module("wdApp",["ionic"])
 		// 状态所对应的模板
 		templateUrl:"templates/pages/detail.html"
 	})
+	.state("riskquiz",{
+		// 状态对应的地址
+		url:"/riskquiz/{id:[0-9]{1,2}}",
+		// 状态所对应的模板
+		templateUrl:"templates/pages/riskquiz.html"
+	})
 	.state("tabs",{
 		// 状态对应的地址
 		url:"/tabs",
@@ -210,7 +217,9 @@ var app=angular.module("wdApp",["ionic"])
 		fechData:function(name){
 			var str=window.localStorage.getItem(name)||"[]";
 			return JSON.parse(str);
-		}
+		},
+		riskScore:[],
+		viewId:""
 	}
 }])
 .controller("produceCtrl",["$scope","$http",function($scope,$http){
@@ -233,7 +242,7 @@ var app=angular.module("wdApp",["ionic"])
 		$scope.loadProduce();
 	}
 }])
-.controller("detailCtrl",["$scope","$http","$stateParams","$state","wdService","$ionicModal",function($scope,$http,$stateParams,$state,wdService,$ionicModal){
+.controller("detailCtrl",["$scope","$http","$stateParams","$state","wdService","$ionicModal","$ionicHistory",function($scope,$http,$stateParams,$state,wdService,$ionicModal,$ionicHistory){
 		// 通过id 发起http请求 拿到数据
 		$scope.produce={};
 		$http.get("http://www.wd.com/detail?id="+$stateParams.id)
@@ -254,17 +263,79 @@ var app=angular.module("wdApp",["ionic"])
 					$scope.user=wdService.fechData("wd-user");
 					if($scope.user.name){
 						//看风险
-						if($scope.user.riskLevel<=2){
+						if($scope.user.riskLevel<=3){
 							// modelRisk 没有的
 							$scope.modalRisk.show();
+							
 						}
 						
 					}else{
 						$state.go("login",{});
 					}
+				
 	
 		}
+	console.log($ionicHistory,$ionicHistory.currentView());
+		wdService.historyId=$ionicHistory.currentView().historyId;
 	$ionicModal.fromTemplateUrl("templates/modal/modalRisk.html",{scope:$scope})
 	.then(function(modal){$scope.modalRisk=modal})
+	$scope.goQuiz=function(){
+		$scope.modalRisk.hide();
 		
+		$state.go("riskquiz",{id:0})
+	}
+		
+}])
+.controller("riskquizCtrl",["$scope","$http","$state","$stateParams","wdService","$ionicHistory",function($scope,$http,$state,$stateParams,wdService,$ionicHistory){
+	$scope.question={}
+	$scope.riskScoreAll=0;
+	$scope.id=parseInt($stateParams.id);
+	
+	$http.get("http://www.wd.com/riskquiz?id="+$stateParams.id)
+				.success(function(res){
+					$scope.question=res.data;
+//					console.log(res.data);
+				})
+	$scope.changeQuiz=function(v){
+		console.log(v);
+		wdService.riskScore[$scope.id]=v;
+		if($scope.id>=9){
+			
+			// 最终的数据发送个数据
+			$scope.riskScoreAll=0;
+			for(var i=0;i<=9;i++){
+				$scope.riskScoreAll+=parseInt(wdService.riskScore[i]);
+			}
+			$scope.user=wdService.fechData("wd-user");
+//			alert("您的综合评分为:"+$scope.riskScoreAll);
+//50
+			if($scope.riskScoreAll>80){
+				//一级
+				$scope.user.riskLevel=3;
+				alert("您的风险等级:3,可以任何进取行型产品");
+				
+			}else if($scope.riskScoreAll>60){
+				//er级
+				$scope.user.riskLevel=2;
+				alert("您的风险等级:2,可以投资高回报类型产品");
+			}
+			else if($scope.riskScoreAll>50){
+				
+				$scope.user.riskLevel=1;
+				alert("您的风险等级:1,可以投资保守类型产品");
+			}else{
+				$scope.user.riskLevel=0;
+				alert("您的风险等级:0,不建议你再这烧钱");
+			}
+			wdService.saveData("wd-user",$scope.user)
+			console.log(wdService.historyId);
+			$ionicHistory.goToHistoryRoot(wdService.historyId)
+			
+		}
+		$state.go("riskquiz",{id:$scope.id+1});
+	
+	}
+	$scope.sendScore=function(){
+		alert("您的综合评分为:"+$scope.riskScoreAll);
+	}
 }])

@@ -1,0 +1,29 @@
+<div class="loginpage" ng-controller="riskquizCtrl">
+
+		<header class="bar bar-header bar-wd">
+			<a href="" class="button button-icon icon wd-icon wd-icon-arrow-back" ng-click="goBack()"></a>
+			<h2 class="title">风险评估({{id+1}}/10)</h2>
+			<a href="" class="button button-right button-clear button-wd-default">注册</a>
+		</header>
+		<ion-content class="has-header has-footer">
+			
+			<h3 class="mt-20 padding">{{question.title}}</h3>
+			<div class="padding list">
+				<label class="item mt-10" 
+					ng-repeat="item in question.options"
+					ng-click="changeQuiz(myvalue)"
+					>
+					<input type="radio" name="q{{id}}" value="{{item.value}}" ng-model="myvalue" />
+					{{item.title}}				
+				</label>
+				
+				
+			</div>
+			<p class="mt-10 text-center wd-positive" ng-if="id>0" ng-click="goBack()">&lt;上一题 </p>
+			
+		</ion-content>
+		<div class="bar bar-footer" ng-if="id==9">
+			<button class="button button-wd-positive button-block" ng-click="sendScore()">确定提交</button>
+		</div>
+	
+</div>

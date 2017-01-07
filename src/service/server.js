@@ -105,8 +105,22 @@ Mock.mock("http://www.wd.com/login",{
 		user:{
 			"uid|100-1000":1,
 			"name":Mock.mock('@cname'),
-			"riskLevel":Mock.mock('@natural(0, 3)')
+			"riskLevel":Mock.mock('@natural(0, 2)')
 		}
 		
 		
 	})
+Mock.mock(/http:\/\/www\.wd\.com\/riskquiz\?id=\d{1,2}/,{
+	status:1,
+	msg:"ok",
+	data:
+		{
+			name:"@ctitle(8,16)?",
+			options:[
+				{title:"A. @ctitle(7,12)","value|1-10":1},
+				{title:"B. @ctitle(7,12)","value|1-10":1},
+				{title:"C. @ctitle(7,12)","value|1-10":1},
+				{title:"D. @ctitle(7,12)","value|1-10":1}
+			]
+		}
+})
