@@ -14,9 +14,25 @@ var app=angular.module("wdApp",["ionic"])
  */
 .controller("wdCtrl",["$scope","$ionicHistory",function($scope,$ionicHistory){
 	// 返回上一个历史记录
-	$scope.goBack=function(){
+	$scope.goBack=function(){		
+
+		if($ionicHistory.backView()&&$ionicHistory.backView().stateId){
 		$ionicHistory.goBack();
+		// 你能返回就返回
+		}else{
+			if($ionicHistory.goToHistoryRoot("ion1")){
+				
+			}else{
+				window.history.back();
+			}
+			
+			// 如何没有就返回首页
+		}	
+		
 	}
+/*	$scope.$on("login.ok",function(event,data){
+//		$scope.$broadcast("login.ok",data);
+	})*/
 	 
 }])
 /**
@@ -44,8 +60,9 @@ var app=angular.module("wdApp",["ionic"])
 				if(res.status==1){
 					// 登陆成功要跳转到首页
 					wdServer.saveData("wd-user",res.user);
-					// 存取用户名
-					$state.go("tabs.home",{});
+					// 存取用户名					
+					$scope.goBack();
+					$scope.$emit("login.ok",{data:res.user})
 					
 					
 				}else if(res.status==0){
@@ -64,6 +81,10 @@ var app=angular.module("wdApp",["ionic"])
 	if($scope.produceList.length<=0){
 		LoadProduceList();
 	}
+	/*$scope.$on("login.ok",function(event,data){
+		console.log("听的到吗");
+		$scope.user=data;
+	})*/
 	// 首页进来检查登陆
 	
 	/* checkIsLogin();
@@ -212,7 +233,7 @@ var app=angular.module("wdApp",["ionic"])
 		$scope.loadProduce();
 	}
 }])
-.controller("detailCtrl",["$scope","$http","$stateParams",function($scope,$http,$stateParams){
+.controller("detailCtrl",["$scope","$http","$stateParams","$state","wdService","$ionicModal",function($scope,$http,$stateParams,$state,wdService,$ionicModal){
 		// 通过id 发起http请求 拿到数据
 		$scope.produce={};
 		$http.get("http://www.wd.com/detail?id="+$stateParams.id)
@@ -224,4 +245,26 @@ var app=angular.module("wdApp",["ionic"])
 				$scope.goBack();
 			}
 		})
+		$scope.buy=function(){
+		/*	1，有没有登陆
+				2.1如果没有登陆 跳转到登陆页面
+				2.2 如果登陆 检查该用户的风险评估值
+					2.2.1如果没有风险评估开始进行风险评估
+					2.2.2如果风险 开始购买*/
+					$scope.user=wdService.fechData("wd-user");
+					if($scope.user.name){
+						//看风险
+						if($scope.user.riskLevel<=2){
+							// modelRisk 没有的
+							$scope.modalRisk.show();
+						}
+						
+					}else{
+						$state.go("login",{});
+					}
+	
+		}
+	$ionicModal.fromTemplateUrl("templates/modal/modalRisk.html",{scope:$scope})
+	.then(function(modal){$scope.modalRisk=modal})
+		
 }])
