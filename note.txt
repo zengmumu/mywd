@@ -154,6 +154,7 @@ $ionicHistory.goBack()返回上一个状态
 $ionicHistory.forwardView() 历史记录中可以前进的状态
 $ionicHistory.backView() 历史记录中一个可以返回的状态
 $ionicHistory.backView().stateId  状态的id
+				view的historyid 
 $ionicHistory.goToHistoryRoot("ion1") 根据历史记录id来跳转  ion1 默认的根状态
 
 
@@ -169,14 +170,188 @@ $ionicModal.formTemplateUrl(url,{scope:$scope})
 3， 显示模块
 $scope.modalRisk.show();
 
+通过服务来存取每个问题的成绩
+wdserver.riskScore=[]
+
+wdserver.riskScore[0]=5;
+
+wdserver.riskScore[1]=4;
+
+
+-------------------------双师课堂
+优秀的讲师-课程-案例可以复用
+-------------------------一个基础的双师课程需要什么
+1，咱们们排除掉硬件因素
+2，我们需要一名优秀的讲师在班级讲课
+3，需要把老师讲课内容复制到另外一个半
+-------------------------我们能复制那些
+A 老师讲的课程
+B 老师布置的作业
+C 老上课与学生的交互，与情感交流（这个是复制不成功的）
+
+
+----------------------------------数组方法
+push  后加
+pop   后删
+
+shift   前删
+unshift 前加
+
+splice（从第几个，删除几个，添加的内容）
+slice（从第几个，切到第几个）不破坏原来的数据
+
+A.concat(B) A和B合并为一个数组
+
+join(",") 把数组转换为字符串
+JSON.stringify(Arr) 转换为字符串
+
+sort() 排序
+sort(function(a,b){if(a>b){return 1}else{return -1}})
+reverse()反转
+
+
+---------------------------数组的遍历
+
+for(var k in arr){
+	console.log(k,arr[k])
+}
+
+for(var i=0;i<arr.length;i++){
+	console.log(arr[i])
+}
+
+for (var value of myArray) {   
+    console.log(value);   
+}  
+
+这是目前遍历数组最简洁和直接的语法；
+它避免了for-in的所有缺陷；
+与forEach()不一样，它支持break，continue和return。
+
+
+myArray.forEach(function (value,index,arr) {   
+    console.log(value,index,arr);  
+ });
+你不能用break语句跳出循环且不能在这个封闭的函数内使用return语句。
+
+// 过滤，筛选
+arr.filter(function(elem,index){
+	return 条件
+})
+
+
+arr.reduce(function(a,b){
+	return a*10+b;
+})
+
+arr.map(function(a){
+	return a*2;
+})
+
+split 把字符串转换为数据
 
 
 
+-----promise 承诺委托
+1，拿点礼物去搞定岳父岳母，
+	成功
+		搞定-大伯买烟
+			成功
+				化妆品搞定小姨子
+					成功
+						鲜花，房子，车，
+							最终求婚成功
+					失败
+			失败
+
+	失败
+2，
+	if（搞定岳父）{
+		if(搞定-大伯){
+				if(搞定小姨子)	{
+						if（金钱物质）{
+							求婚成功，
+							
+						}
+					
+					}
+		
+			}else{
+
+			}
+
+		}else{
+
+		}
+	if（搞定岳父）
+	.then()
+	.then()
+	.then()
+	.then(funtion(rs){
+	
+	})
+
+//--------------------------------es6 原生
+promise承诺委托
+1,resolve(data)
+2,reject(有问题钱不够)
+
+var q=new Promise(resolve,reject,){
+	if（买到）{
+		resolve(东西)
+	}else{
+		reject("钱不够。。。。")
+	}
+}
+
+q.then(function(东西){
+	console.log(东西)
+})
+.catch(function(err){
+	console.log(err);	
+})
+
+// ------------------------------------------angular 中的promise
+var q=$q.defer();//建立延期任务
+q.resolve(data)解决
+q.reject(err)拒绝
+返回
+return q.promise;//返回承诺
+
+用的时候
+q.promise.then(function(){},function(){})
+第个为success
+第二个err
 
 
 
+---------------------------------------------手机中的事件
+touchstart 开始触摸
+touchmove  滑动
+touchend    结束触摸
+targetTouches[0]  获取第一个根手指
+targetTouches[0].pageY	相对应页面
+		.pageX	
+		.clientX相对于视口 viewport
+		.clientY
 
+---------------------------------Scroller（）
 
+1，初始化
+2，创建Dom
+	包裹一层dom
+3，绑定事件
+	touchstart 开始触摸
+	touchmove  滑动
+	touchend    结束触摸
+
+Create New Repository
+	
+新建仓库
+Clone Existing Repository
+克隆仓库
+Open Existing Repository
+打开仓库
 
 
 
